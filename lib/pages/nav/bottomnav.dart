@@ -14,33 +14,36 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
+  List<Widget> screens = [
+    Home(),
+    ChartNpending(),
+    ChatList(),
+    Expenses(),
+    Profile()
+  ];
+  int currentIndex = 0;
+  onTap(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+    print(currentIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = const [
-      Home(),
-      ChartNpending(),
-      ChatList(),
-      Expenses(),
-      Profile()
-    ];
-    int currentIndex = 0;
-    void onTap(int index) => setState(() {
-          currentIndex = index;
-        });
     return Scaffold(
       body: screens[currentIndex],
-      bottomNavigationBar:  NavigationBar(
+      bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         height: 65,
         elevation: 0,
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         onDestinationSelected: onTap,
         destinations: const [
           NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Iconsax.chart), label: 'Chart'),
-          NavigationDestination(
-              icon: Icon(Iconsax.document_download), label: 'Chats'),
-          NavigationDestination(icon: Icon(Iconsax.user), label: 'Stats'),
+          NavigationDestination(icon: Icon(Iconsax.shop), label: 'Chart'),
+          NavigationDestination(icon: Icon(Iconsax.message), label: 'Chats'),
+          NavigationDestination(icon: Icon(Iconsax.chart), label: 'Stats'),
           NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
         ],
       ),
