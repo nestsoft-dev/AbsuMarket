@@ -3,6 +3,8 @@ import 'package:iconsax/iconsax.dart';
 
 import '../constants/colors.dart';
 import 'home.dart';
+import 'pending_pur..dart';
+import 'purchased.dart';
 
 class ChartNpending extends StatefulWidget {
   const ChartNpending({super.key});
@@ -68,13 +70,9 @@ class _ChartNpendingState extends State<ChartNpending>
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: TabBarView(controller: tabController, children: [
-                Container(
-                  color: Colors.blue,
-                ),
-                Container(
-                  color: Colors.blue,
-                )
+              child: TabBarView(controller: tabController, children: const [
+                PendingPurchase(),
+               Purchased()
               ]),
             )
           ],

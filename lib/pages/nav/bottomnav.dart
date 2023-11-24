@@ -24,9 +24,10 @@ class _BottomNavState extends State<BottomNav> {
   int currentIndex = 0;
   onTap(int index) {
     setState(() {
+      
       currentIndex = index;
     });
-    print(currentIndex);
+
   }
 
   @override

@@ -9,8 +9,8 @@ class RecentsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 235,
-      width: 150,
+      height: 255,
+      width: 160,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
           color: const Color.fromARGB(255, 230, 230, 230),
@@ -25,11 +25,11 @@ class RecentsCard extends StatelessWidget {
                   child: Image.asset(
                     'assets/product.png',
                     height: 130,
-                    width: 150,
+                    width: 160,
                     fit: BoxFit.cover,
                   )),
               const SizedBox(
-                height: 3,
+                height: 1,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -41,19 +41,37 @@ class RecentsCard extends StatelessWidget {
                       'Phone',
                       style: GoogleFonts.aBeeZee(fontSize: 18),
                     ),
-
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    //Store Name
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Icon(Iconsax.shop, size: 15),
+                        Text(
+                          'Amax Stiches',
+                          style: GoogleFonts.aboreto(
+                              color: Colors.grey, fontSize: 14),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
                     //price
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Price',
-                          style: GoogleFonts.poppins(fontSize: 14),
+                          '₦ 2500.00',
+                          style: GoogleFonts.aboreto(
+                              color: deepBlue, fontSize: 16),
                         ),
                         Text(
                           '₦3500.00',
                           style: GoogleFonts.aboreto(
-                              color: deepBlue, fontSize: 16),
+                              color: Colors.grey, fontSize: 13),
                         ),
                       ],
                     ),
@@ -66,7 +84,7 @@ class RecentsCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Location',
+                          'Aba',
                           style: GoogleFonts.poppins(),
                         ),
                         const Icon(

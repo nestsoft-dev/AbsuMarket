@@ -1,11 +1,8 @@
-import 'package:absumarket/constants/colors.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../constants/colors.dart';
-import '../constants/colors.dart';
-import '../constants/colors.dart';
+import '../screens/view_product.dart';
 import '../widgets/carousel.dart';
 import '../widgets/categories_car.dart';
 import '../widgets/recent_card.dart';
@@ -18,10 +15,6 @@ class Market extends StatefulWidget {
 }
 
 class _MarketState extends State<Market> {
-  CarouselController? carouselController;
-
-  int caroInt = 0;
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -30,7 +23,9 @@ class _MarketState extends State<Market> {
       child: Column(
         children: [
           //carousel
-          Carousel(size: size,),
+          Carousel(
+            size: size,
+          ),
 
           //
           SizedBox(
@@ -47,14 +42,22 @@ class _MarketState extends State<Market> {
             height: size.height * 0.01,
           ),
           SizedBox(
-            height: 235,
+            height: 255,
             width: size.width,
             child: ListView.builder(
                 itemCount: 8,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (_, index) => const Padding(
-                      padding: EdgeInsets.only(right: 5),
-                      child: RecentsCard(),
+                itemBuilder: (_, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>  ViewProducts()));
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: RecentsCard(),
+                      ),
                     )),
           ),
           SizedBox(
@@ -64,8 +67,7 @@ class _MarketState extends State<Market> {
               alignment: Alignment.centerLeft,
               child: Text('Categories',
                   style: GoogleFonts.aBeeZee(
-                      //  color: Colors.white,
-                      //  fontWeight: FontWeight.bold,
+                 
                       fontSize: 16))),
           SizedBox(
             height: size.height * 0.01,
