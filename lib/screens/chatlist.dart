@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../widgets/chat_card.dart';
+import 'chat_screen.dart';
 
 class ChatList extends StatelessWidget {
   const ChatList({super.key});
@@ -12,19 +12,25 @@ class ChatList extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text('Chats Vendors'),
+        title: const Text('Chats Vendors'),
         centerTitle: true,
       ),
-      body: Container(
+      body: SizedBox(
         height: size.height,
-        // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ListView.builder(
             itemCount: 10,
             padding: const EdgeInsets.all(0),
             scrollDirection: Axis.vertical,
-            itemBuilder: (_, index) => const Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: ChatCard(),
+            itemBuilder: (_, index) => Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ChatScreen()));
+                      },
+                      child: const ChatCard()),
                 )),
       ),
     );

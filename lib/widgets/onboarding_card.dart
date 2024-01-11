@@ -33,7 +33,7 @@ class OnBoardingCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
+        child: ListView(
           children: [
             //lottie
             Lottie.asset('assets/$lottie'),

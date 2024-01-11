@@ -1,12 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../constants/colors.dart';
 import '../functions/functions.dart';
+import '../models/purchased_model.dart';
 
 class PurchasedCard extends StatelessWidget {
-  const PurchasedCard({super.key});
+  const PurchasedCard({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
+  final PurchasedModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +29,8 @@ class PurchasedCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/product.png',
+                child: Image.network(
+                  model.imageUrl,
                   height: 110,
                   width: 110,
                   fit: BoxFit.cover,
@@ -37,13 +43,13 @@ class PurchasedCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Nike 452',
+                    model.storeName,
                     style:
                         GoogleFonts.aBeeZee(color: Colors.white, fontSize: 20),
                   ),
                   const Spacer(),
                   GestureDetector(
-                    onTap: () => viewPastPurchase(context),
+                    onTap: () => viewPastPurchase(context, model),
                     child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -63,7 +69,7 @@ class PurchasedCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'N750.00',
+                    'N${model.amount}',
                     style:
                         GoogleFonts.poppins(color: Colors.white, fontSize: 18),
                   ),

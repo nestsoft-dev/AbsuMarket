@@ -2,6 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
+import '../widgets/expense_screen.dart';
+import '../widgets/income.dart';
 import 'home.dart';
 
 class Expenses extends StatefulWidget {
@@ -100,14 +102,9 @@ class _ExpensesState extends State<Expenses>
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: TabBarView(controller: tabController, children: [
-                Container(
-                  color: Colors.green,
-                ),
-                Container(
-                  color: Colors.red,
-                ),
-              ]),
+              child: TabBarView(
+                  controller: tabController,
+                  children: const [Income(), ExpenseScreen()]),
             )
           ],
         ),

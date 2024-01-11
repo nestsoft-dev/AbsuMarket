@@ -1,15 +1,17 @@
+import 'package:absumarket/models/productmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import '../constants/colors.dart';
 
 class RecentsCard extends StatelessWidget {
-  const RecentsCard({super.key});
+  const RecentsCard({super.key, required this.model});
+  final ProductModel model;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 255,
+      height: 260,
       width: 160,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
@@ -21,13 +23,14 @@ class RecentsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    'assets/product.png',
-                    height: 130,
-                    width: 160,
-                    fit: BoxFit.cover,
-                  )),
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  model.images[0].toString(),
+                  height: 130,
+                  width: 160,
+                  fit: BoxFit.cover,
+                ),
+              ),
               const SizedBox(
                 height: 1,
               ),
@@ -38,7 +41,8 @@ class RecentsCard extends StatelessWidget {
                   children: [
                     //name
                     Text(
-                      'Phone',
+                      model.productName,
+                      maxLines: 1,
                       style: GoogleFonts.aBeeZee(fontSize: 18),
                     ),
                     const SizedBox(
@@ -50,7 +54,7 @@ class RecentsCard extends StatelessWidget {
                       children: [
                         const Icon(Iconsax.shop, size: 15),
                         Text(
-                          'Amax Stiches',
+                          model.storeName,
                           style: GoogleFonts.aboreto(
                               color: Colors.grey, fontSize: 14),
                         ),
@@ -63,16 +67,16 @@ class RecentsCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '₦ 2500.00',
-                          style: GoogleFonts.aboreto(
-                              color: deepBlue, fontSize: 16),
-                        ),
-                        Text(
-                          '₦3500.00',
-                          style: GoogleFonts.aboreto(
-                              color: Colors.grey, fontSize: 13),
-                        ),
+                        model.discountprice == 0
+                            ? Text(
+                                '₦${model.price}',
+                                style: TextStyle(color: deepBlue, fontSize: 16),
+                              )
+                            : Text(
+                                '₦${model.discountprice}',
+                                style:
+                                    TextStyle(color: Colors.grey, fontSize: 13),
+                              ),
                       ],
                     ),
                     const SizedBox(
@@ -84,7 +88,7 @@ class RecentsCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Aba',
+                          model.location,
                           style: GoogleFonts.poppins(),
                         ),
                         const Icon(
@@ -99,19 +103,21 @@ class RecentsCard extends StatelessWidget {
               )
             ],
           ),
-          Positioned(
-            top: 10,
-            right: 8,
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(216, 255, 235, 59)),
-              child: Text(
-                '-45%',
-              ),
-            ),
-          )
+          model.discountprice == 0
+              ? SizedBox.shrink()
+              : Positioned(
+                  top: 10,
+                  right: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Color.fromARGB(216, 255, 235, 59)),
+                    child: Text(
+                      '-${model.discountprice / model.price * 100}%',
+                    ),
+                  ),
+                )
         ],
       ),
     );

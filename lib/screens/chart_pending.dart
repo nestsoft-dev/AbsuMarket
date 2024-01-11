@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../constants/colors.dart';
 import 'home.dart';
 import 'pending_pur..dart';
@@ -33,6 +32,7 @@ class _ChartNpendingState extends State<ChartNpending>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    // context.read<ChartProvider>().resetChart();
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -48,7 +48,7 @@ class _ChartNpendingState extends State<ChartNpending>
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
                   isScrollable: false,
-                  labelPadding: EdgeInsets.only(left: 20),
+                  labelPadding: const EdgeInsets.only(left: 20),
                   controller: tabController,
                   indicator: CircleTabIndicator(color: deepBlue, radius: 4),
                   tabs: const [
@@ -70,10 +70,9 @@ class _ChartNpendingState extends State<ChartNpending>
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: TabBarView(controller: tabController, children: const [
-                PendingPurchase(),
-               Purchased()
-              ]),
+              child: TabBarView(
+                  controller: tabController,
+                  children: const [PendingPurchase(), Purchased()]),
             )
           ],
         ),
